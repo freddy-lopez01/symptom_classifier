@@ -1,0 +1,123 @@
+Fungal infection: [8, 10, 11, 13, 14]                                                                     difference: 6
+All possible Symptoms for Fungal infection: ['itching', 'skin_rash', 'nodal_skin_eruptions', 'dischromic_patches']
+
+Allergy: [11, 12, 13, 16]                                                                     difference: 5
+All possible Symptoms for Allergy: ['continuous_sneezing', 'shivering', 'chills', 'watering_from_eyes']
+
+GERD: [21, 23, 24, 25, 28]                                                                     difference: 7
+All possible Symptoms for GERD: ['stomach_pain', 'acidity', 'ulcers_on_tongue', 'vomiting', 'cough', 'chest_pain']
+
+Chronic cholestasis: [21, 22, 23, 25, 26]                                                                     difference: 5
+All possible Symptoms for Chronic cholestasis: ['itching', 'vomiting', 'yellowish_skin', 'nausea', 'loss_of_appetite', 'abdominal_pain', 'yellowing_of_eyes']
+
+Drug Reaction: [15, 16, 18, 20, 21]                                                                     difference: 6
+All possible Symptoms for Drug Reaction: ['itching', 'skin_rash', 'stomach_pain', 'burning_micturition', 'spotting_urination']
+
+Peptic ulcer diseae: [22, 23, 27]                                                                     difference: 5
+All possible Symptoms for Peptic ulcer diseae: ['vomiting', 'loss_of_appetite', 'abdominal_pain', 'passage_of_gases', 'internal_itching', 'indigestion']
+
+AIDS: [14, 15, 16, 18, 21]                                                                     difference: 7
+All possible Symptoms for AIDS: ['muscle_wasting', 'patches_in_throat', 'high_fever', 'extra_marital_contacts']
+
+Diabetes : [36, 37, 38, 39, 41]                                                                     difference: 5
+All possible Symptoms for Diabetes : ['fatigue', 'weight_loss', 'restlessness', 'lethargy', 'irregular_sugar_level', 'blurred_and_distorted_vision', 'obesity', 'excessive_hunger', 'increased_appetite', 'polyuria']
+
+Gastroenteritis: [12, 13, 14, 15, 18]                                                                     difference: 6
+All possible Symptoms for Gastroenteritis: ['vomiting', 'sunken_eyes', 'dehydration', 'diarrhoea']
+
+Bronchial Asthma: [21, 23, 24, 28]                                                                     difference: 7
+All possible Symptoms for Bronchial Asthma: ['fatigue', 'cough', 'high_fever', 'breathlessness', 'family_history', 'mucoid_sputum']
+
+Hypertension : [14, 17, 18, 21]                                                                     difference: 7
+All possible Symptoms for Hypertension : ['headache', 'chest_pain', 'dizziness', 'loss_of_balance', 'lack_of_concentration']
+
+Migraine: [27, 28, 29, 30, 32]                                                                     difference: 5
+All possible Symptoms for Migraine: ['acidity', 'indigestion', 'headache', 'blurred_and_distorted_vision', 'excessive_hunger', 'stiff_neck', 'depression', 'irritability', 'visual_disturbances']
+
+Cervical spondylosis: [16, 18, 19, 20, 23]                                                                     difference: 7
+All possible Symptoms for Cervical spondylosis: ['back_pain', 'weakness_in_limbs', 'neck_pain', 'dizziness', 'loss_of_balance']
+
+Paralysis (brain hemorrhage): [9, 10, 11, 12, 14]                                                                     difference: 5
+All possible Symptoms for Paralysis (brain hemorrhage): ['vomiting', 'headache', 'weakness_of_one_body_side', 'altered_sensorium']
+
+Jaundice: [24, 26, 27, 28, 30, 31]                                                                     difference: 7
+All possible Symptoms for Jaundice: ['itching', 'vomiting', 'fatigue', 'weight_loss', 'high_fever', 'yellowish_skin', 'dark_urine', 'abdominal_pain']
+
+Malaria: [27, 28, 29, 31, 34]                                                                     difference: 7
+All possible Symptoms for Malaria: ['chills', 'vomiting', 'high_fever', 'sweating', 'headache', 'nausea', 'muscle_pain', 'diarrhoea']
+
+Chicken pox: [37, 38, 39, 40, 41, 42, 43, 44]                                                                     difference: 7
+All possible Symptoms for Chicken pox: ['itching', 'skin_rash', 'fatigue', 'lethargy', 'high_fever', 'headache', 'loss_of_appetite', 'mild_fever', 'swelled_lymph_nodes', 'malaise', 'red_spots_over_body']
+
+Dengue: [48, 49, 50, 51, 52, 53, 55]                                                                     difference: 7
+All possible Symptoms for Dengue: ['skin_rash', 'chills', 'joint_pain', 'vomiting', 'fatigue', 'high_fever', 'headache', 'nausea', 'loss_of_appetite', 'pain_behind_the_eyes', 'back_pain', 'muscle_pain', 'red_spots_over_body', 'malaise']
+
+Typhoid: [44, 45, 46, 47, 50]                                                                     difference: 6
+All possible Symptoms for Typhoid: ['chills', 'vomiting', 'fatigue', 'high_fever', 'nausea', 'constipation', 'abdominal_pain', 'diarrhoea', 'toxic_look_(typhos)', 'belly_pain', 'headache']
+
+hepatitis A: [39, 40, 41, 42, 45]                                                                     difference: 6
+All possible Symptoms for hepatitis A: ['joint_pain', 'vomiting', 'yellowish_skin', 'dark_urine', 'nausea', 'loss_of_appetite', 'abdominal_pain', 'diarrhoea', 'mild_fever', 'yellowing_of_eyes', 'muscle_pain']
+
+Hepatitis B: [39, 40, 41, 42, 43]                                                                     difference: 4
+All possible Symptoms for Hepatitis B: ['itching', 'fatigue', 'lethargy', 'yellowish_skin', 'dark_urine', 'loss_of_appetite', 'abdominal_pain', 'yellow_urine', 'yellowing_of_eyes', 'malaise', 'receiving_blood_transfusion', 'receiving_unsterile_injections']
+
+Hepatitis C: [20, 21, 22, 25]                                                                     difference: 5
+All possible Symptoms for Hepatitis C: ['fatigue', 'yellowish_skin', 'nausea', 'loss_of_appetite', 'family_history', 'yellowing_of_eyes']
+
+Hepatitis D: [31, 32, 33, 36]                                                                     difference: 5
+All possible Symptoms for Hepatitis D: ['joint_pain', 'vomiting', 'fatigue', 'yellowish_skin', 'dark_urine', 'nausea', 'loss_of_appetite', 'abdominal_pain', 'yellowing_of_eyes']
+
+Hepatitis E: [55, 56, 57, 58, 59, 62]                                                                     difference: 7
+All possible Symptoms for Hepatitis E: ['joint_pain', 'vomiting', 'fatigue', 'high_fever', 'yellowish_skin', 'dark_urine', 'nausea', 'loss_of_appetite', 'abdominal_pain', 'yellowing_of_eyes', 'coma', 'stomach_bleeding', 'acute_liver_failure']
+
+Alcoholic hepatitis: [25, 27, 28, 29, 32]                                                                     difference: 7
+All possible Symptoms for Alcoholic hepatitis: ['vomiting', 'yellowish_skin', 'abdominal_pain', 'swelling_of_stomach', 'distention_of_abdomen', 'history_of_alcohol_consumption', 'fluid_overload']
+
+Tuberculosis: [68, 70, 71, 72, 75]                                                                     difference: 7
+All possible Symptoms for Tuberculosis: ['chills', 'vomiting', 'fatigue', 'weight_loss', 'cough', 'high_fever', 'breathlessness', 'sweating', 'loss_of_appetite', 'mild_fever', 'yellowing_of_eyes', 'swelled_lymph_nodes', 'malaise', 'phlegm', 'chest_pain', 'blood_in_sputum']
+
+Common Cold: [70, 71, 73, 74, 77]                                                                     difference: 7
+All possible Symptoms for Common Cold: ['continuous_sneezing', 'chills', 'fatigue', 'cough', 'high_fever', 'headache', 'swelled_lymph_nodes', 'malaise', 'phlegm', 'throat_irritation', 'redness_of_eyes', 'sinus_pressure', 'runny_nose', 'congestion', 'chest_pain', 'loss_of_smell', 'muscle_pain']
+
+Pneumonia: [45, 46, 47, 48, 49, 52]                                                                     difference: 7
+All possible Symptoms for Pneumonia: ['chills', 'fatigue', 'cough', 'high_fever', 'breathlessness', 'sweating', 'malaise', 'chest_pain', 'fast_heart_rate', 'rusty_sputum', 'phlegm']
+
+Dimorphic hemmorhoids(piles): [20, 21, 22, 26]                                                                     difference: 6
+All possible Symptoms for Dimorphic hemmorhoids(piles): ['constipation', 'pain_during_bowel_movements', 'pain_in_anal_region', 'bloody_stool', 'irritation_in_anus']
+
+Heart attack: [12, 14, 15, 16, 19]                                                                     difference: 7
+All possible Symptoms for Heart attack: ['vomiting', 'breathlessness', 'sweating', 'chest_pain']
+
+Varicose veins: [26, 27, 28, 32]                                                                     difference: 6
+All possible Symptoms for Varicose veins: ['fatigue', 'cramps', 'bruising', 'obesity', 'swollen_legs', 'swollen_blood_vessels', 'prominent_veins_on_calf']
+
+Hypothyroidism: [48, 49, 50, 51, 53]                                                                     difference: 5
+All possible Symptoms for Hypothyroidism: ['fatigue', 'weight_gain', 'cold_hands_and_feets', 'mood_swings', 'lethargy', 'dizziness', 'puffy_face_and_eyes', 'enlarged_thyroid', 'brittle_nails', 'swollen_extremeties', 'depression', 'irritability', 'abnormal_menstruation']
+
+Hyperthyroidism: [37, 38, 39, 40, 43]                                                                     difference: 6
+All possible Symptoms for Hyperthyroidism: ['fatigue', 'mood_swings', 'weight_loss', 'restlessness', 'sweating', 'diarrhoea', 'fast_heart_rate', 'excessive_hunger', 'muscle_weakness', 'irritability', 'abnormal_menstruation']
+
+Hypoglycemia: [42, 43, 44, 47]                                                                     difference: 5
+All possible Symptoms for Hypoglycemia: ['vomiting', 'fatigue', 'anxiety', 'sweating', 'headache', 'nausea', 'blurred_and_distorted_vision', 'excessive_hunger', 'slurred_speech', 'irritability', 'palpitations', 'drying_and_tingling_lips']
+
+Osteoarthristis: [15, 17, 18, 20]                                                                     difference: 5
+All possible Symptoms for Osteoarthristis: ['joint_pain', 'neck_pain', 'knee_pain', 'hip_joint_pain', 'swelling_joints', 'painful_walking']
+
+Arthritis: [13, 14, 16, 18]                                                                     difference: 5
+All possible Symptoms for Arthritis: ['muscle_weakness', 'stiff_neck', 'swelling_joints', 'movement_stiffness', 'painful_walking']
+
+(vertigo) Paroymsal  Positional Vertigo: [21, 22, 23, 24, 27]                                                                     difference: 6
+All possible Symptoms for (vertigo) Paroymsal  Positional Vertigo: ['vomiting', 'headache', 'nausea', 'spinning_movements', 'loss_of_balance', 'unsteadiness']
+
+Acne: [6, 7, 9]                                                                     difference: 3
+All possible Symptoms for Acne: ['skin_rash', 'pus_filled_pimples', 'blackheads', 'scurring']
+
+Urinary tract infection: [15, 16, 17, 21]                                                                     difference: 6
+All possible Symptoms for Urinary tract infection: ['burning_micturition', 'bladder_discomfort', 'foul_smell_ofurine', 'continuous_feel_of_urine']
+
+Psoriasis: [12, 13, 15]                                                                     difference: 3
+All possible Symptoms for Psoriasis: ['skin_rash', 'joint_pain', 'skin_peeling', 'silver_like_dusting', 'small_dents_in_nails', 'inflammatory_nails']
+
+Impetigo: [12, 15, 16, 17, 19]                                                                     difference: 7
+All possible Symptoms for Impetigo: ['skin_rash', 'high_fever', 'blister', 'red_sore_around_nose', 'yellow_crust_ooze']
+

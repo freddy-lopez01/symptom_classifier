@@ -75,6 +75,7 @@ def main():
     total_sum_disease = combined_sum(severity_dic)
     range_sets = []
     name_sets = []
+    res_dic = {}
     for key in total_sum_disease:
         tmp = total_sum_disease[key]
         print(f"{key}: {sorted(tmp[0])}    Difference: {max(tmp[0])-min(tmp[0])}") 
@@ -83,6 +84,10 @@ def main():
         name_sets.append(key)
 #        print(f"Difference: {max(tmp[0])-min(tmp[0])}")
         print(f"All possible Symptoms for {key}: {tmp[1]}")
+        res_dic[key]= {
+            "symptom":tmp[1],
+            "sum_range":(tmp_range)
+        }
         most_severe = ""
         most_severe_weight = 0
         for sym in tmp[1]:
@@ -93,7 +98,10 @@ def main():
         print(f"Most Severe Symptom: {most_severe} {most_severe_weight}")
         print("\n")
         print(range_sets)
-        plot_data(range_sets, name_sets)
+       # plot_data(range_sets, name_sets)
+    return res_dic
 
 if __name__ == "__main__":
-    main()
+    res = main()
+    print("----------------------------------------------------------------------------------------------------------------")
+    print(res)

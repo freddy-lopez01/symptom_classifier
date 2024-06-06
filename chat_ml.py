@@ -9,7 +9,7 @@ from sklearn.utils import shuffle
 
 def main():
     # Load the dataset
-    df = pd.read_csv("dataset.csv")
+    df = pd.read_csv("reformated_dataset.csv")
     df = shuffle(df, random_state=30)
     print("First five rows of the dataset:")
     print(df.head())
@@ -28,22 +28,8 @@ def main():
     print("\nNull value check:")
     print(null_checker)
     
-    # Load the symptom severity data
-    df1 = pd.read_csv('Symptom-severity.csv')
-    df1['Symptom'] = df1['Symptom'].str.strip()  # Ensure no leading/trailing spaces
-    print("\nFirst five rows of Symptom-severity data:")
-    print(df1.head())
 
-    symptom_to_weight = dict(zip(df1['Symptom'], df1['weight']))
-
-    
     # Replace symptom names with their severity weights
-    vals = df.values
-    symptoms = df1['Symptom'].unique()
-    for i in range(len(symptoms)):
-        vals[vals == symptoms[i]] = df1[df1['Symptom'] == symptoms[i]]['weight'].values[0]
-    
-    d = pd.DataFrame(vals, columns=df.columns)
     #d = d.replace('dischromic  patches', 0)
     #d = d.replace('spotting  urination', 0)
     #df = d.replace('foul smell of urine', 0)
@@ -54,9 +40,6 @@ def main():
     print("\nNull value check after replacement:")
     print(null_checker)
     
-    print("\nNumber of symptoms used to identify the disease:", len(df1['Symptom'].unique()))
-    print("Number of diseases that can be identified:", len(df['Disease'].unique()))
-    print("Unique diseases:", df['Disease'].unique())
     
     # Split the data into features and labels
     data = df.iloc[:, 1:].values

@@ -44,10 +44,10 @@ def main():
                 print(symptom)
                 symptom = symptom.strip().replace(" ", "")
                 print(index)
-                df.loc[index, symptom] = severity_dic[symptom]
+                df.loc[index, symptom] = 1
         # Append the new row to the new DataFrame
         df._append(new_row, ignore_index=True)
-    df.to_csv('reformated_dataset.csv', index=False)
+    df.to_csv('updated_dataset.csv', index=False)
     #with open('dataset.csv', newline='') as csvfile:
     #    reader = csv.reader(csvfile, delimiter=',', quotechar='|')
     #    for row in reader:

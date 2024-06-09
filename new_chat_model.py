@@ -53,39 +53,34 @@ def train_model():
 
     # Generate the visualization of the decision tree
     plt.figure(figsize=(20, 10))
-    plot_tree(clf, filled=True, feature_names=X_train.columns, class_names=clf.classes_)
-    plt.savefig('decision_tree.png')  # Save the visualization as an image
+    tree_plot = plot_tree(clf, filled=True, feature_names=X_train.columns, class_names=clf.classes_)
+    for item in tree_plot:
+        if isinstance(item, plt.Text):
+            continue  # Skip text elements
+        if hasattr(item, 'get_bbox_patch'):
+            bbox = item.get_bbox_patch()
+            bbox.set_linewidth(0.3)  # Set the border thickness here
+
+    plt.savefig('decision_tree.png', dpi=600, bbox_inches='tight')  # Save the visualization as an image
     plt.show()
 
     return clf, symptom_columns
 
 
 def predict_disease(clf, symptom_columns, symptoms, severity_dic, disease_dict):
-    # Create a DataFrame for the input symptoms
     input_data = pd.DataFrame(columns=symptom_columns)
-
-    # Initialize a row with zeros
     input_row = {symptom: 0 for symptom in symptom_columns}
 
-    # Fill in the provided symptoms with their weights
     for symptom in symptoms:
         if symptom in severity_dic:
             input_row[symptom] = severity_dic[symptom]
-
-    # Calculate the total severity score
     input_row['Total_Severity_Score'] = sum(input_row.values())
 
-    # Append the row to the DataFrame
     input_data = input_data._append(input_row, ignore_index=True)
-
-    # Predict the disease
     predicted_disease = clf.predict(input_data)[0]
-
-    # Get the total severity score
     total_severity_score = input_row['Total_Severity_Score']
-
-    # Check if the total severity score is within the range for the predicted disease
     disease_info = disease_dict.get(predicted_disease, None)
+    
     if disease_info:
         min_score, max_score = disease_info['sum_range']
         if min_score <= total_severity_score <= max_score:
@@ -131,25 +126,16 @@ def combined_sum(sum_dict):
                     continue
     return disease_sum
 def plot_data(range_set, names):
-#    ranges = [(2, 9), (4, 10)]
     ranges = range_set
-    # Set up the plot
     fig, ax = plt.subplots()
 
-# Plot each range as a separate line above the previous one
     for i, (start, end) in enumerate(ranges):
         ax.plot([start, end], [i, i], marker='|', markersize=12, linewidth=2, label=f'{names[i]}')
-
-# Add labels and title
     ax.set_yticks(range(len(ranges)))
     ax.set_yticklabels([f'{names[i]}' for i in range(len(ranges))])
     ax.set_xlabel('Value')
     ax.set_title('Ranges on Number Line')
-
-# Add a legend
     ax.legend()
-
-# Show the plot
     plt.show()
 
 def sym_range_compute():
@@ -172,7 +158,6 @@ def sym_range_compute():
         tmp_range = (min(tmp[0]), max(tmp[0]))
         range_sets.append(tmp_range)
         name_sets.append(key)
-#        print(f"Difference: {max(tmp[0])-min(tmp[0])}")
         print(f"All possible Symptoms for {key}: {tmp[1]}")
         res_dic[key]= {
             "symptoms":tmp[1],
@@ -188,23 +173,19 @@ def sym_range_compute():
         print(f"Most Severe Symptom: {most_severe} {most_severe_weight}")
         print("\n")
         print(range_sets)
-       # plot_data(range_sets, name_sets)
     return res_dic
 
 
 if __name__ == "__main__":
-    # Load the symptom weights
     severity_dic = load_symptom_weights('Symptom-severity.csv')
-
-    # Load the disease dictionary
     disease_dict = sym_range_compute()
-
-    # Train the model
     clf, symptom_columns = train_model()
 
     # Example manual test
-    test_symptoms = ['fever', 'cough']  # List of symptoms without weights
+    test_symptoms = [ 'vomiting','sunken_eyes','dehydration']  # List of symptoms without weights
     
     predicted_disease = predict_disease(clf, symptom_columns, test_symptoms, severity_dic, disease_dict)
+    if predicted_disease == "Gastroenteritis":
+        print("---Model correctly predicted the Disease---")
     print(f'Predicted Disease: {predicted_disease}')
 

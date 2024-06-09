@@ -11,47 +11,30 @@ def load_symptom_weights(file_path):
     severity_dic = {}
     with open(file_path, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        next(reader)  # Skip the header row
+        next(reader)
         for row in reader:
             name, weight = row
             severity_dic[name.strip().replace(" ", "")] = int(weight)
     return severity_dic
 
 def train_model():
-    # Load the dataset
     df = pd.read_csv('reformated_dataset.csv')
-
-    # Fill missing values with 0
     df = df.fillna(0)
-
-    # Calculate the total severity score
-    symptom_columns = df.columns[1:]  # Exclude the 'Disease' column
+    symptom_columns = df.columns[1:]
     df['Total_Severity_Score'] = df[symptom_columns].sum(axis=1)
 
-    # Prepare the feature matrix (X) and target vector (y)
     X = df.drop('Disease', axis=1)
     y = df['Disease']
-
-    # Split the dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Initialize the decision tree classifier
     clf = DecisionTreeClassifier(random_state=42)
-
-    # Train the model
     clf.fit(X_train, y_train)
 
-    # Make predictions
     y_pred = clf.predict(X_test)
 
-    # Evaluate the model
     accuracy = accuracy_score(y_test, y_pred)
     print(f'Accuracy: {accuracy:.2f}')
-
-    # Detailed classification report
     print(classification_report(y_test, y_pred))
-
-    # Generate the visualization of the decision tree
     plt.figure(figsize=(20, 10))
     tree_plot = plot_tree(clf, filled=True, feature_names=X_train.columns, class_names=clf.classes_)
     for item in tree_plot:
@@ -176,15 +159,33 @@ def sym_range_compute():
     return res_dic
 
 
+def get_disease_info(disease_name):
+    disease_info = pd.read_csv("symptom_precaution.csv")
+    disease_info.columns = disease_info.columns.str.strip()
+    try:
+        result = disease_info.loc[disease_info['Disease'] == disease_name]
+        if result.empty:
+            return f"No information found for disease: {disease_name}"
+        else:
+            print(f"Based on your symptoms, the model has predictied a diagnosis of {disease_name}")
+            print("Here are a few recommandations to help counteract and reduce such symptoms:")
+            for index, row in result.iterrows():
+                for column in result.columns[1:]:
+                    print(f"{column}: {row[column]}")
+            return None
+    except KeyError:
+        return f"Disease column not found in the DataFrame"
+
+
 if __name__ == "__main__":
     severity_dic = load_symptom_weights('Symptom-severity.csv')
     disease_dict = sym_range_compute()
     clf, symptom_columns = train_model()
 
-    # Example manual test
-    test_symptoms = [ 'vomiting','sunken_eyes','dehydration']  # List of symptoms without weights
-    
+    test_symptoms = [ 'vomiting','sunken_eyes','dehydration']
     predicted_disease = predict_disease(clf, symptom_columns, test_symptoms, severity_dic, disease_dict)
+    get_disease_info(predicted_disease)
+
     if predicted_disease == "Gastroenteritis":
         print("---Model correctly predicted the Disease---")
     print(f'Predicted Disease: {predicted_disease}')

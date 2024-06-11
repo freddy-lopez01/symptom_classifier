@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx} % Required for inserting images
+\usepackage{multicol}
+
+\title{Disease Prediction Through Multi-Class Classification of Observed Symptoms Using Decision Tree and Logistic Regression Models}
+\author{Freddy Lopez and Simon Zhao}
+\date{June 2024}
+
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+\section{Abstract}
+As a species, humans are susceptible to many diseases and illnesses. Most of the time, it can be difficult to decide what illness or disease one may have contracted based on physical symptoms experienced. Are chills the sign of and allergic reaction or Malaria? More often than not, self investigation leads to one realizing there are so many diseases that share certain symptoms, however, not all symptoms are treated equally. Some are more significant to contributing to a diagnosis than others. Utilizing our dataset, we were able to achieve an accuracy rate of 80 percent and higher, with logistic regression having an accuracy of 97 percent, and 90 percent for our Decision Tree implementation.  
+\section{Introduction}
+As the human population continues to grow, disease and illness are able to be transferred more and more easily and efficiently. In order to keep the population safe from massive pandemics such as the COVID-19 pandemic in 2020-2023, it is important that the population is able to know whether their symptoms are a result of the common cold or something much more severe. Typically, a simple Google search on a symptom yields a plethora of potential illnesses, often including unlikely diagnoses. Additionally, after achieving a diagnosis, it is essential to know how to mitigate the symptoms and begin the road to recovery. In this project, we utilized a comprehensive dataset composed of four smaller sets: Symptom Severity, Disease and Associated Symptoms, Symptom Description, and Symptom Precaution. These datasets were instrumental in training a Logistic Regression model and a Decision Tree model to predict diseases based on a list of symptoms. By associating symptoms with each disease and converting each symptom to its integer equivalent weight, we effectively trained both models, achieving an accuracy of over 95 percent.
+\section{Background}
+For our project, we selected the Disease Symptom Prediction dataset from Kaggle. This dataset is composed of four smaller datasets, each containing different types of information. The first subset, Symptom Severity Data, includes 133 unique symptoms along with their corresponding weights. The Disease-and-Associated-Symptoms dataset consists of 4920 samples representing 41 unique diseases, with each disease associated with a minimum of 3 and a maximum of 17 symptoms. The remaining two datasets, Symptom Description and Symptom Precaution, while containing valuable information, were not directly utilized in training our models but were used later in the project for providing detailed descriptions and precautions.
+
+Among these, the Disease-and-Associated-Symptoms and Symptom Severity datasets were explicitly used for training our models. However, the original datasets presented a few challenges. The data was in string format, which required conversion to numerical form. We addressed this by using the Symptom Severity data to convert symptom names into numerical weights. These weights quantified the contribution of each symptom to the diagnosis of a disease. After cleaning and preprocessing the data, we proceeded to build and train our Logistic Regression and Decision Tree model. 
+
+\section{Method}
+Due to the nature of the problem, we decide that either a Decision Tree or Logistic Regression model would be most appropriate. As mentioned previously, cleaning and preparing the data for this implementation was crucial and needed to be done prior to training. To accomplish this, I used the Disease-and-Associated-Symptoms and Symptom-Severity dataset in order to create a new data frame to be used by the models. First of all, the form in which the Disease-and-Associated-Symptoms data was structured was with each row being comprised of the disease name, and symptoms one through 17 where each symptom was in its English string form. Not only was the data not in a numerical format, due to the nature of diseases, a single disease could exhibit different combinations of symptoms. With this in mind, I decided to iterate through the data and creating a dictionary that for every unique disease in the dataset, it would look at the current disease, save all corresponding symptoms to a dictionary with the disease name as the key. As it continued though the dataset, whenever a new symptom was discovered in relation to that same disease, it would continually update the list of corresponding symptoms to the dictionary. During the same process, I also began to compute the sum of the numerical translation of each symptom combination for each disease and also added that value to the dictionary of diseases. At the end of this process, I now had a dictionary that contained all possible symptoms that a disease could exhibit and the sum of each known combination of symptoms. Using these sums, I was then able to calculate a range in which the sums of the smallest and biggest combinations of symptoms for each disease fall in (Figure 1). This information would help the model verify that the predicted disease is reasonable. 
+\end{multicols}
+\begin{figure*}
+    \centering
+    \includegraphics[width=18cm]{Figure_1.png}
+    \caption{ranges of symptoms sums for each disease}
+    \label{fig:graph}
+\end{figure*}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{0DF963EE-E2B2-43A4-8502-EBBDE8C76499_1_201_a.jpeg}
+    \caption{Original data format}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure*}
+    \centering
+    \includegraphics[width=1\linewidth]{62B6B258-7335-4AC9-A4FD-A4AA94242D48_1_201_a.jpeg}
+    \caption{Modified data}
+    \label{1111}
+\end{figure*}
+\begin{multicols}{2}
+
+\section{Experiments}
+Our approach in this project consisted of creating to different models: Logistic Regression and Decision Tree Learning Models. The purpose of this decision was to be able to compare and contrast the effectiveness and accuracy of each and determine if one was better than the other. As the over arching goal of this project is to create a classification model, a Decision Tree seemed the most appropriate but we decided to also experiment with other models such as Logistic Regression. 
+
+
+\subsection{Decision Tree}
+My approach to the Decision Tree model implementation was to first, create a modified version of the dataset that restructures how symptoms related to diseases are organized. The original dataset had each disease name in the first column and then had the options of having one through 17 possible correlated symptoms. After cleaning the original dataset of some incorrect values/typos, it then was modified into a new .csv file that had the disease name in the first column and then a column for every symptom in the Symptom-Severity file. Finally, for each disease, the columns that corresponded to the list of associated symptoms was updated from 0 to its corresponding weight obtained from the Symptom-Severity data. This now resulted in allowing me to train the model with 133 unique features. 
+Using the sklearn function "train-test-split" method, I was able to split the new dataset into X-train, x-test, Y-train, and y-test subsets. The hyper parameters that were chosen for this operation were random-state=42 and test-size=0.4.  Next, I then wanted to know what the best parameters for training the Decision tree would be in regards to tree depth and min-sample-split values. To achieve this, I trained the models for about 98 separate time, with each time increasing the min-sample-split value by 1 and then recording the models accuracy. After all the models had been trained, I then selected the min-sample-split values that yielded the highest accuracy and used that value to train the model one final time. Once the had trained, I was able to compute the precision, recall-metrics, and F1 score for the final trained model which showed that the model exhibited abnormal perfect accuracy scores for nearly every disease in all three categories. Additionally, the final accuracy of the model overall was 99 percent. 
+\subsection{Analysis}
+With the final model yielding an accuracy of 99 percent, this raised some suspicions as normally models are never that high in regards to accuracy scores on test data. As I looked into reasons why the model would be scoring that high, I realized that there could be two main reasons: The model is over-fitting the data and the tree is to large. As I went back through my model and adjusted the hyper parameters such as tree depth, test size, and random-state, the effects on the model where not as expected. Deep trees are not ideal in regards to an accurate and efficient Decision Tree model, but it turned out that as I reduced the trees max-depth hyper parameter, the accuracy of the tree began to drop exponentially. I ended up finding that the max-depth=50 resulted in not having a massive tree as I originally did and not sacrificing model accuracy. Beyond the scope of this class/term. I will continue to tune this model to see if I can achieve high accuracy but also reduce the depth of the tree by more than 50 percent. Upon being satisfied with my models accuracy performance and set hyper parameters, I integrated the final two sets of data: Symptom Description and Symptom Precaution. By using these two sets of data, I was able to successfully implement the ability for the model to print out via stdout on the terminal the diagnosis for the user based off a custom list of symptoms, associated symptoms and overview of the diagnosis and finally, return a set of recommendations to the user on how they can help themselves begin the road to recovery or recommendations to seek professional medical help immediately. This concluded the interaction component of the Decision Tree model. 
+
+\end{multicols}
+\begin{figure*}
+    \centering
+    \includegraphics[width=1\linewidth]{image.png}
+    \caption{Precision, Recall Metrics, and F1 scores for final decision tree}
+    \label{fig:enter-label}
+\end{figure*}
+\begin{figure*}
+    \centering
+    \includegraphics[width=1\linewidth]{accuracy_min_100.png}
+    \caption{Varying min-sample-split values and accuracy}
+    \label{fig:enter-label}
+\end{figure*}
+\begin{multicols}{2}
+\section{Logistic Regression}
+Does your method outperform reasonable baselines?
+How does your method compare to simplified versions of your method? 
+What kinds of errors remain? 
+What interesting things do you learn from your experiments? 
+Tables of results are useful, but charts and figures are often better. 
+
+\section{Conclusion}
+Overall, the two separate models, Decision tree and Logistic Regression models, 
+\end{multicols}
+
+\section{References}
+“Understanding Logistic Regression in Python.” Learn Data Science and AI Online, www.datacamp.com/datalab/w/11b0dd9d-49be-429d-992e-45f73b3c23fb. Accessed 10 June 2024. 
+
+S.HS.H 13711 gold badge11 silver badge1010 bronze badges, et al. “Evaluating Logistic Regression with Cross Validation.” Stack Overflow, 1 Apr. 1962, stackoverflow.com/questions/39163354/evaluating-logistic-regression-with-cross-validation. Accessed 10 June 2024. 
+
+“Logisticregression.” Scikit, scikit-learn.org/stable/modules/generated/sklearn.linear-model.LogisticRegression.html. Accessed 10 June 2024. 
+
+“Pandas Documentation#.” Pandas Documentation - Pandas 2.2.2 Documentation, pandas.pydata.org/docs/. Accessed 10 June 2024. 
+
+“1.10. Decision Trees.” Scikit, scikit-learn.org/stable/modules/tree.html. Accessed 10 June 2024. 
+
+Patil, Pranay. “Disease Symptom Prediction.” Kaggle, 24 May 2020, www.kaggle.com/datasets/itachi9604/disease-symptom-description-dataset. Accessed 10 June 2024. 
+\end{document}

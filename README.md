@@ -48,7 +48,7 @@ from your_module import train_model, predict_disease
 clf, symptom_columns = train_model()
 test_symptoms = ["vomiting", "dehydration", "diarrhoea"]
 predicted_disease = predict_disease(clf, symptom_columns, test_symptoms, severity_dic, disease_dict)
-
+```
 ## Functions
 
 ### `load_symptom_weights(file_path)`

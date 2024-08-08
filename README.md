@@ -33,9 +33,6 @@ To run this project, ensure you have the following dependencies installed:
 - Matplotlib
 - CSV
 
-You can install the required packages using:
-```bash
-pip install pandas seaborn scikit-learn matplotlib
 
 ## Usage
 1. Clone the repository.

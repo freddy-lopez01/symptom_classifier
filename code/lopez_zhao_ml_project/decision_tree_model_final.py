@@ -38,7 +38,7 @@ def train_model():
     hyper parameter settings and returns the settings that yield the highest accuracy
     Finally, it creates a classification report based off of the metrics computed by the classification_report() method from sklearn.metrics
     """
-    df = pd.read_csv('reformated_dataset.csv')
+    df = pd.read_csv('../dataset/reformated_dataset.csv')
     df = df.fillna(0)
    # df_head = df.iloc[:5, :6]
 
@@ -158,7 +158,7 @@ def predict_disease(clf, symptom_columns, symptoms, severity_dic, disease_dict):
 def combined_sum(sum_dict):
     counter = 0
     disease_sum = {}
-    with open('dataset.csv', newline='') as csvfile:
+    with open('../dataset/dataset.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in spamreader:
             name = row[0]
@@ -205,7 +205,7 @@ def plot_data(range_set, names):
 
 def sym_range_compute():
     severity_dic ={}
-    with open('Symptom-severity.csv', newline='') as csvfile:
+    with open('../dataset/Symptom-severity.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in spamreader:
             name, weight = row[0].split(",")
@@ -269,14 +269,23 @@ def print_wrapped_text(text, width=70):
 
 
 if __name__ == "__main__":
-    severity_dic = load_symptom_weights('Symptom-severity.csv')
+    severity_dic = load_symptom_weights('../dataset/Symptom-severity.csv')
     disease_dict = sym_range_compute()
-    clf, symptom_columns = train_model()
+    count = 0
+    for key, value in disease_dict.items():
+	    count += 1
+    print(f"disease count: {count}")
+    count1 = 0	
+    for key, value in severity_dic.items():
+	    count1 += 1
+    print(f"disease count: {count1}")
+	
+#    clf, symptom_columns = train_model()
 
     #test_symptoms = [ 'vomiting','sunken_eyes','dehydration']
     #test_symptoms = ["vomiting", "dehydration", "diarrhoea"]
-    test_symptoms = ["continuous_sneezing","chills","fatigue","cough","high_fever","headache","swelled_lymph_nodes","malaise","phlegm", "throat_irritation", "redness_of_eyes", "sinus_pressure", "runny_nose", "congestion","chest_pain", "loss_of_smell", "muscle_pain"]
+#    test_symptoms = ["continuous_sneezing","chills","fatigue","cough","high_fever","headache","swelled_lymph_nodes","malaise","phlegm", "throat_irritation", "redness_of_eyes", "sinus_pressure", "runny_nose", "congestion","chest_pain", "loss_of_smell", "muscle_pain"]
     #test_symptoms = ['high_fever', 'red_sore_around_nose', 'yellow_crust_ooze']
-    predicted_disease = predict_disease(clf, symptom_columns, test_symptoms, severity_dic, disease_dict)
-    get_disease_info(predicted_disease)
+    #predicted_disease = predict_disease(clf, symptom_columns, test_symptoms, severity_dic, disease_dict)
+#    get_disease_info(predicted_disease)
 
